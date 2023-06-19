@@ -21,6 +21,7 @@
         "src/*"
       ]
     },
+    "outDir": "dist",
     "lib": [
       "esnext",
       "dom",
