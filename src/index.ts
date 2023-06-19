@@ -3,12 +3,9 @@ import {
 } from 'telegraf';
 import { Update } from 'typegram';
 
-const token: string = process.env.BOT_TOKEN as string;
-
-const telegram: Telegram = new Telegram(token);
-
-const bot: Telegraf<Context<Update>> = new Telegraf(token);
-
+const { BOT_TOKEN } = process.env;
+const telegram: Telegram = new Telegram(BOT_TOKEN);
+const bot: Telegraf<Context<Update>> = new Telegraf(BOT_TOKEN);
 const chatId: string = process.env.CHAT_ID as string;
 
 bot.start((ctx) => {
