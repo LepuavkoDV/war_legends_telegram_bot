@@ -1,11 +1,14 @@
 {
   "scripts": {
-    "run": "npx tsx index.ts",
+    "dev": "npx tsx src/index.ts",
+    "start": "dist/index.js",
     "lint": "eslint ./**/*.ts --fix",
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "dependencies": {
     "@types/jest": "^29.2.2",
+    "@types/webpack-env": "^1.18.1",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",
     "@vue/eslint-config-airbnb": "^6.0.0",
