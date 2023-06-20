@@ -6,11 +6,11 @@ import {
 import { Update } from 'typegram';
 import { ERepliesList } from '../types/ERepliesList';
 
-export const onStart = (ctx: Context<Update>) => {
+export const onStart = async (ctx: Context<Update>) => {
   const buttons = Markup.inlineKeyboard([
     [Markup.button.callback('🇺🇸', ERepliesList.actionSelectLangEn), Markup.button.callback('🇷🇺', ERepliesList.actionSelectLangRu)],
   ]);
-  ctx.sendPhoto(
+  await ctx.sendPhoto(
     Input.fromLocalFile(`${__dirname}/../../assets/1.jpg`),
     {
       // @ts-ignore

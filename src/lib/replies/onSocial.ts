@@ -5,7 +5,7 @@ import {
 import { Update } from 'typegram';
 import { MyContext } from '../types/MyContext';
 
-export const onSocial = (ctx: MyContext<Update>) => {
+export const onSocial = async (ctx: MyContext<Update>) => {
   // @ts-ignore
   const { i18n } = ctx;
   const buttons = Markup.inlineKeyboard([
@@ -16,7 +16,7 @@ export const onSocial = (ctx: MyContext<Update>) => {
     [Markup.button.url('Telegram', 'https://t.me/WarLegendsRTS')],
     [Markup.button.callback(`⬅️ ${i18n.t('mainMenu')}`, i18n.languageCode)],
   ]);
-  ctx.sendPhoto(
+  await ctx.sendPhoto(
     Input.fromLocalFile(`${__dirname}/../../assets/4.jpg`),
     {
       caption: i18n.t('onSocialTitle'),

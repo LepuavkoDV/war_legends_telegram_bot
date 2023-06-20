@@ -37,7 +37,7 @@ bot.help((ctx) => onHelp(ctx));
 //   // Context shortcut
 //   ctx.leaveChat();
 // });
-bot.on('callback_query', (ctx) => {
+bot.on('callback_query', async (ctx) => {
   // @ts-ignore
   const { i18n } = ctx;
   const action: CallbackQuery.DataQuery = ctx.update.callback_query as CallbackQuery.DataQuery;
@@ -46,19 +46,19 @@ bot.on('callback_query', (ctx) => {
   case ERepliesList.actionSelectLangEn:
     ctx.session = { locale: 'en' };
     i18n.locale(ctx.session?.locale);
-    onLangSelect(ctx);
+    await onLangSelect(ctx);
     break;
   case ERepliesList.actionSelectLangRu:
     ctx.session = { locale: 'ru' };
     i18n.locale(ctx.session?.locale);
-    onLangSelect(ctx);
+    await onLangSelect(ctx);
     break;
   case ERepliesList.actionSocialNetworks:
     i18n.locale(ctx.session?.locale);
-    onSocial(ctx);
+    await onSocial(ctx);
     break;
   default:
-    onStart(ctx);
+    await onStart(ctx);
     break;
   }
 });

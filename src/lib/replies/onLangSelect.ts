@@ -6,7 +6,7 @@ import {
 import { Update } from 'typegram';
 import { ERepliesList } from '../types/ERepliesList';
 
-export const onLangSelect = (ctx: Context<Update>) => {
+export const onLangSelect = async (ctx: Context<Update>) => {
   // @ts-ignore
   const i18n = ctx.i18n;
   const buttons = Markup.inlineKeyboard([
@@ -31,7 +31,7 @@ export const onLangSelect = (ctx: Context<Update>) => {
       Markup.button.callback(`💬 ${i18n.t('community')}`, ERepliesList.actionCommunity),
     ],
   ]);
-  ctx.sendPhoto(
+  await ctx.sendPhoto(
     Input.fromLocalFile(`${__dirname}/../../assets/2.jpg`),
     {
       caption: i18n.t('selectActionCaption'),
