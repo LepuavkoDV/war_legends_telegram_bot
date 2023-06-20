@@ -43,9 +43,9 @@ bot.on('callback_query', async (ctx) => {
   const { i18n } = ctx;
   const action: CallbackQuery.DataQuery = ctx.update.callback_query as CallbackQuery.DataQuery;
 
-  const selectLangAction = async ($ctx: IActionContext<Update>, locale: string) => {
+  const selectLangAction = async ($ctx: IActionContext<Update>, locale: keyof typeof ESupportedLocales) => {
     $ctx.session = { locale };
-    i18n.locale($ctx.session?.locale);
+    i18n.locale($ctx.session?.locale || ESupportedLocales.en);
     await onLangSelect($ctx);
   }
 
