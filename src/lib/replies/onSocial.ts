@@ -3,9 +3,9 @@ import {
   Markup,
 } from 'telegraf';
 import { Update } from 'typegram';
-import { MyContext } from '../types/MyContext';
+import { IActionContext } from '../types/IActionContext';
 
-export const onSocial = async (ctx: MyContext<Update>) => {
+export const onSocial = async (ctx: IActionContext<Update>) => {
   // @ts-ignore
   const { i18n } = ctx;
   const buttons = Markup.inlineKeyboard([

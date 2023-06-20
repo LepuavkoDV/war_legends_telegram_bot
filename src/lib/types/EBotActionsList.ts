@@ -1,4 +1,4 @@
-export enum ERepliesList {
+export enum EBotActionsList {
   actionSelectLangRu = 'ru',
   actionSelectLangEn = 'en',
   actionAbout = 'actionAbout',

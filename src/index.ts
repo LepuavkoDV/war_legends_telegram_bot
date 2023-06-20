@@ -13,12 +13,12 @@ import {
   onLangSelect,
   onSocial,
 } from './lib/replies';
-import { ERepliesList } from './lib/types/ERepliesList';
+import { EBotActionsList } from './lib/types/EBotActionsList';
 import * as path from 'path';
-import { MyContext } from './lib/types/MyContext';
+import { IActionContext } from './lib/types/IActionContext';
 
 const { BOT_TOKEN } = process.env;
-const bot: Telegraf<MyContext<Update>> = new Telegraf(BOT_TOKEN);
+const bot: Telegraf<IActionContext<Update>> = new Telegraf(BOT_TOKEN);
 const telegrafI18n = new TelegrafI18n({
   defaultLanguage: 'en',
   sessionName: 'session',
@@ -43,17 +43,17 @@ bot.on('callback_query', async (ctx) => {
   const action: CallbackQuery.DataQuery = ctx.update.callback_query as CallbackQuery.DataQuery;
 
   switch (action.data) {
-  case ERepliesList.actionSelectLangEn:
+  case EBotActionsList.actionSelectLangEn:
     ctx.session = { locale: 'en' };
     i18n.locale(ctx.session?.locale);
     await onLangSelect(ctx);
     break;
-  case ERepliesList.actionSelectLangRu:
+  case EBotActionsList.actionSelectLangRu:
     ctx.session = { locale: 'ru' };
     i18n.locale(ctx.session?.locale);
     await onLangSelect(ctx);
     break;
-  case ERepliesList.actionSocialNetworks:
+  case EBotActionsList.actionSocialNetworks:
     i18n.locale(ctx.session?.locale);
     await onSocial(ctx);
     break;

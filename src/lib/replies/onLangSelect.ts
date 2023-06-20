@@ -4,31 +4,31 @@ import {
   Markup,
 } from 'telegraf';
 import { Update } from 'typegram';
-import { ERepliesList } from '../types/ERepliesList';
+import { EBotActionsList } from '../types/EBotActionsList';
 
 export const onLangSelect = async (ctx: Context<Update>) => {
   // @ts-ignore
   const i18n = ctx.i18n;
   const buttons = Markup.inlineKeyboard([
     [
-      Markup.button.callback(`ℹ️ ${i18n.t('about')}`, ERepliesList.actionAbout),
-      Markup.button.callback(`🧑‍💻 ${i18n.t('beta')}`, ERepliesList.actionBeta),
+      Markup.button.callback(`ℹ️ ${i18n.t('about')}`, EBotActionsList.actionAbout),
+      Markup.button.callback(`🧑‍💻 ${i18n.t('beta')}`, EBotActionsList.actionBeta),
     ],
     [
-      Markup.button.callback(`📰 ${i18n.t('news')}`, ERepliesList.actionNews),
-      Markup.button.callback(`🤖 ${i18n.t('android')}`, ERepliesList.actionAndroid),
+      Markup.button.callback(`📰 ${i18n.t('news')}`, EBotActionsList.actionNews),
+      Markup.button.callback(`🤖 ${i18n.t('android')}`, EBotActionsList.actionAndroid),
     ],
     [
-      Markup.button.callback(`☑️ ${i18n.t('social')}`, ERepliesList.actionSocialNetworks),
-      Markup.button.callback(`🍏 ${i18n.t('ios')}`, ERepliesList.actionIOS),
+      Markup.button.callback(`☑️ ${i18n.t('social')}`, EBotActionsList.actionSocialNetworks),
+      Markup.button.callback(`🍏 ${i18n.t('ios')}`, EBotActionsList.actionIOS),
     ],
     [
-      Markup.button.callback(`🌐 ${i18n.t('registration')}`, ERepliesList.actionRegistration),
-      Markup.button.callback(`⬇️ ${i18n.t('downloadApk')}`, ERepliesList.actionDownloadAPK),
+      Markup.button.callback(`🌐 ${i18n.t('registration')}`, EBotActionsList.actionRegistration),
+      Markup.button.callback(`⬇️ ${i18n.t('downloadApk')}`, EBotActionsList.actionDownloadAPK),
     ],
     [
-      Markup.button.callback(`📩 ${i18n.t('contacts')}`, ERepliesList.actionContacts),
-      Markup.button.callback(`💬 ${i18n.t('community')}`, ERepliesList.actionCommunity),
+      Markup.button.callback(`📩 ${i18n.t('contacts')}`, EBotActionsList.actionContacts),
+      Markup.button.callback(`💬 ${i18n.t('community')}`, EBotActionsList.actionCommunity),
     ],
   ]);
   await ctx.sendPhoto(
