@@ -1,5 +1,6 @@
 import {
-  Context, Telegraf, session
+  Telegraf,
+  session,
 } from 'telegraf';
 import {
   CallbackQuery,
@@ -18,15 +19,15 @@ import { MyContext } from './lib/types/MyContext';
 
 const { BOT_TOKEN } = process.env;
 const bot: Telegraf<MyContext<Update>> = new Telegraf(BOT_TOKEN);
-const i18n = new TelegrafI18n({
+const telegrafI18n = new TelegrafI18n({
   defaultLanguage: 'en',
   sessionName: 'session',
   useSession: true,
   allowMissing: false,
-  directory: path.resolve(__dirname, 'locales')
+  directory: path.resolve(__dirname, 'locales'),
 })
 bot.use(session());
-bot.use(i18n.middleware());
+bot.use(telegrafI18n.middleware());
 
 bot.start((ctx) => onStart(ctx));
 bot.help((ctx) => onHelp(ctx));
@@ -38,27 +39,27 @@ bot.help((ctx) => onHelp(ctx));
 // });
 bot.on('callback_query', (ctx) => {
   // @ts-ignore
-  const i18n = ctx.i18n;
+  const { i18n } = ctx;
   const action: CallbackQuery.DataQuery = ctx.update.callback_query as CallbackQuery.DataQuery;
 
   switch (action.data) {
-    case ERepliesList.langEn:
-      ctx.session = { locale: 'en' };
-      i18n.locale(ctx.session?.locale);
-      onLangSelect(ctx);
-      break;
-    case ERepliesList.langRu:
-      ctx.session = { locale: 'ru' };
-      i18n.locale(ctx.session?.locale);
-      onLangSelect(ctx);
-      break;
-    case ERepliesList.social:
-      i18n.locale(ctx.session?.locale);
-      onSocial(ctx);
-      break;
-    default:
-      onStart(ctx);
-      break;
+  case ERepliesList.actionSelectLangEn:
+    ctx.session = { locale: 'en' };
+    i18n.locale(ctx.session?.locale);
+    onLangSelect(ctx);
+    break;
+  case ERepliesList.actionSelectLangRu:
+    ctx.session = { locale: 'ru' };
+    i18n.locale(ctx.session?.locale);
+    onLangSelect(ctx);
+    break;
+  case ERepliesList.actionSocialNetworks:
+    i18n.locale(ctx.session?.locale);
+    onSocial(ctx);
+    break;
+  default:
+    onStart(ctx);
+    break;
   }
 });
 

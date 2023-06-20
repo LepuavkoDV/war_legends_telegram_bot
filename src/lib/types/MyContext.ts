@@ -5,6 +5,7 @@ interface SessionData {
   // ... more session data go here
 }
 
-export interface MyContext<T> extends Context {
+// eslint-disable-next-line
+export interface MyContext<U> extends Context {
   session?: SessionData;
 }

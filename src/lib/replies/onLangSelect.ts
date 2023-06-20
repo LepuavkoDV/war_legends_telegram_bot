@@ -11,32 +11,33 @@ export const onLangSelect = (ctx: Context<Update>) => {
   const i18n = ctx.i18n;
   const buttons = Markup.inlineKeyboard([
     [
-      Markup.button.callback(`ℹ️ ${i18n.t('about')}`, ERepliesList.about),
-      Markup.button.callback(`🧑‍💻 ${i18n.t('beta')}`, ERepliesList.beta)
+      Markup.button.callback(`ℹ️ ${i18n.t('about')}`, ERepliesList.actionAbout),
+      Markup.button.callback(`🧑‍💻 ${i18n.t('beta')}`, ERepliesList.actionBeta),
     ],
     [
-      Markup.button.callback(`📰 ${i18n.t('news')}`, ERepliesList.news),
-      Markup.button.callback(`🤖 ${i18n.t('android')}`, ERepliesList.android)
+      Markup.button.callback(`📰 ${i18n.t('news')}`, ERepliesList.actionNews),
+      Markup.button.callback(`🤖 ${i18n.t('android')}`, ERepliesList.actionAndroid),
     ],
     [
-      Markup.button.callback(`☑️ ${i18n.t('social')}`, ERepliesList.social),
-      Markup.button.callback(`🍏 ${i18n.t('ios')}`, ERepliesList.ios)
+      Markup.button.callback(`☑️ ${i18n.t('social')}`, ERepliesList.actionSocialNetworks),
+      Markup.button.callback(`🍏 ${i18n.t('ios')}`, ERepliesList.actionIOS),
     ],
     [
-      Markup.button.callback(`🌐 ${i18n.t('registration')}`, ERepliesList.registration),
-      Markup.button.callback(`⬇️ ${i18n.t('downloadApk')}`, ERepliesList.download)
+      Markup.button.callback(`🌐 ${i18n.t('registration')}`, ERepliesList.actionRegistration),
+      Markup.button.callback(`⬇️ ${i18n.t('downloadApk')}`, ERepliesList.actionDownloadAPK),
     ],
     [
-      Markup.button.callback(`📩 ${i18n.t('contacts')}`, ERepliesList.contacts),
-      Markup.button.callback(`💬 ${i18n.t('community')}`, ERepliesList.community)
+      Markup.button.callback(`📩 ${i18n.t('contacts')}`, ERepliesList.actionContacts),
+      Markup.button.callback(`💬 ${i18n.t('community')}`, ERepliesList.actionCommunity),
     ],
   ]);
   ctx.sendPhoto(
     Input.fromLocalFile(`${__dirname}/../../assets/2.jpg`),
     {
       caption: i18n.t('selectActionCaption'),
+      // eslint-disable-next-line camelcase
       parse_mode: 'MarkdownV2',
-      ...buttons
-    }
+      ...buttons,
+    },
   );
 };

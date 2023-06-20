@@ -1,16 +1,14 @@
 export enum ERepliesList {
-  // ru
-  langRu = 'ru',
-  // en
-  langEn = 'en',
-  about = 'about',
-  beta = 'beta',
-  news = 'news',
-  social = 'social',
-  android = 'android',
-  ios = 'ios',
-  download = 'download',
-  registration = 'registration',
-  community = 'community',
-  contacts = 'contacts',
+  actionSelectLangRu = 'ru',
+  actionSelectLangEn = 'en',
+  actionAbout = 'actionAbout',
+  actionBeta = 'actionBeta',
+  actionNews = 'actionNews',
+  actionSocialNetworks = 'actionSocialNetworks',
+  actionAndroid = 'actionAndroid',
+  actionIOS = 'actionIOS',
+  actionDownloadAPK = 'actionDownloadAPK',
+  actionRegistration = 'actionRegistration',
+  actionCommunity = 'actionCommunity',
+  actionContacts = 'actionContacts',
 }
