@@ -1,8 +1,8 @@
 export enum ERepliesList {
   // ru
-  langRu = 'langRu',
+  langRu = 'ru',
   // en
-  langEn = 'langEn',
+  langEn = 'en',
   about = 'about',
   beta = 'beta',
   news = 'news',

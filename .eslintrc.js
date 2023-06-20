@@ -3,7 +3,8 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: [],
+  extends: [
+  ],
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',

@@ -4,7 +4,7 @@ import {
   Markup,
 } from 'telegraf';
 import { Update } from 'typegram';
-import { ERepliesList } from '../ERepliesList';
+import { ERepliesList } from '../types/ERepliesList';
 
 export const onStart = (ctx: Context<Update>) => {
   const buttons = Markup.inlineKeyboard([

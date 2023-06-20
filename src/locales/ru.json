@@ -6,9 +6,11 @@
   "news": "Новости",
   "android": "Android",
   "social": "Социалки",
+  "onSocialTitle": "Оставайтесь на канале и подписывайтесь на наши социалки",
   "ios": "iOS",
   "registration": "Регистрация",
   "downloadApk": "Скачать APK",
   "contacts": "Контакты",
-  "community": "Комьюнити"
+  "community": "Комьюнити",
+  "mainMenu": "Главное меню"
 }

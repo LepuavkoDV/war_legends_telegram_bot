@@ -10,12 +10,14 @@ import {
   onStart,
   onHelp,
   onLangSelect,
+  onSocial,
 } from './lib/replies';
-import { ERepliesList } from './lib/ERepliesList';
+import { ERepliesList } from './lib/types/ERepliesList';
 import * as path from 'path';
+import { MyContext } from './lib/types/MyContext';
 
 const { BOT_TOKEN } = process.env;
-const bot: Telegraf<Context<Update>> = new Telegraf(BOT_TOKEN);
+const bot: Telegraf<MyContext<Update>> = new Telegraf(BOT_TOKEN);
 const i18n = new TelegrafI18n({
   defaultLanguage: 'en',
   sessionName: 'session',
@@ -38,17 +40,23 @@ bot.command('quit', (ctx) => {
 });
 
 bot.on('callback_query', (ctx) => {
+  // @ts-ignore
+  const i18n = ctx.i18n;
   const action: CallbackQuery.DataQuery = ctx.update.callback_query as CallbackQuery.DataQuery;
   switch (action.data) {
     case ERepliesList.langEn:
-      // @ts-ignore
-      ctx.i18n.locale('en');
+      ctx.session = { locale: 'en' };
+      i18n.locale(ctx.session?.locale);
       onLangSelect(ctx);
       break;
     case ERepliesList.langRu:
-      // @ts-ignore
-      ctx.i18n.locale('ru');
+      ctx.session = { locale: 'ru' };
+      i18n.locale(ctx.session?.locale);
       onLangSelect(ctx);
+      break;
+    case ERepliesList.social:
+      i18n.locale(ctx.session?.locale);
+      onSocial(ctx);
       break;
     default:
       onStart(ctx);

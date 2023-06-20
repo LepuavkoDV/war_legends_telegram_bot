@@ -6,9 +6,11 @@
   "news": "News & Updates",
   "android": "Android",
   "social": "Social Media",
+  "onSocialTitle": "Stay on the channel and subscribe to our social media",
   "ios": "iOS",
   "registration": "Registration",
   "downloadApk": "Download APK",
   "contacts": "Contacts",
-  "community": "Community"
+  "community": "Community",
+  "mainMenu": "Main menu"
 }

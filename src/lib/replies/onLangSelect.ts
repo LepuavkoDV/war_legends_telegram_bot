@@ -4,7 +4,7 @@ import {
   Markup,
 } from 'telegraf';
 import { Update } from 'typegram';
-import { ERepliesList } from '../ERepliesList';
+import { ERepliesList } from '../types/ERepliesList';
 
 export const onLangSelect = (ctx: Context<Update>) => {
   // @ts-ignore
@@ -34,8 +34,7 @@ export const onLangSelect = (ctx: Context<Update>) => {
   ctx.sendPhoto(
     Input.fromLocalFile(`${__dirname}/../../assets/2.jpg`),
     {
-      // @ts-ignore
-      caption: ctx.i18n.t('selectActionCaption'),
+      caption: i18n.t('selectActionCaption'),
       parse_mode: 'MarkdownV2',
       ...buttons
     }
