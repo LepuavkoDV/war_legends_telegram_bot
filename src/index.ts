@@ -1,6 +1,7 @@
 import {
   Telegraf,
   session,
+  Context,
 } from 'telegraf';
 import {
   CallbackQuery,
@@ -16,11 +17,12 @@ import {
 import { EBotActionsList } from './lib/types/EBotActionsList';
 import * as path from 'path';
 import { IActionContext } from './lib/types/IActionContext';
+import { ESupportedLocales } from './lib/types/ESupportedLocales';
 
 const { BOT_TOKEN } = process.env;
 const bot: Telegraf<IActionContext<Update>> = new Telegraf(BOT_TOKEN);
 const telegrafI18n = new TelegrafI18n({
-  defaultLanguage: 'en',
+  defaultLanguage: ESupportedLocales.en,
   sessionName: 'session',
   useSession: true,
   allowMissing: false,
@@ -42,16 +44,18 @@ bot.on('callback_query', async (ctx) => {
   const { i18n } = ctx;
   const action: CallbackQuery.DataQuery = ctx.update.callback_query as CallbackQuery.DataQuery;
 
+  const selectLangAction = async ($ctx: IActionContext<Update>, locale: string) => {
+    $ctx.session = { locale };
+    i18n.locale($ctx.session?.locale);
+    await onLangSelect($ctx);
+  }
+
   switch (action.data) {
   case EBotActionsList.actionSelectLangEn:
-    ctx.session = { locale: 'en' };
-    i18n.locale(ctx.session?.locale);
-    await onLangSelect(ctx);
+    await selectLangAction(ctx, ESupportedLocales.en);
     break;
   case EBotActionsList.actionSelectLangRu:
-    ctx.session = { locale: 'ru' };
-    i18n.locale(ctx.session?.locale);
-    await onLangSelect(ctx);
+    await selectLangAction(ctx, ESupportedLocales.ru);
     break;
   case EBotActionsList.actionSocialNetworks:
     i18n.locale(ctx.session?.locale);
