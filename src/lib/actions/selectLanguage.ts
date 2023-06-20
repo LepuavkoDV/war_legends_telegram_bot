@@ -4,9 +4,9 @@ import {
   Markup,
 } from 'telegraf';
 import { Update } from 'typegram';
-import { EBotActionsList } from '../types/EBotActionsList';
+import { EBotActionsList } from '../core/EBotActionsList';
 
-export const onLangSelect = async (ctx: Context<Update>) => {
+export const selectLanguage = async (ctx: Context<Update>) => {
   // @ts-ignore
   const i18n = ctx.i18n;
   const buttons = Markup.inlineKeyboard([
