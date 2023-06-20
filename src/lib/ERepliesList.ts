@@ -1,0 +1,26 @@
+export enum ERepliesList {
+  // ru
+  langRu = 'langRu',
+  aboutRu = 'aboutRu',
+  betaRu = 'betaRu',
+  newsRu = 'newsRu',
+  socialRu = 'socialRu',
+  androidRu = 'androidRu',
+  iosRu = 'iosRu',
+  downloadRu = 'downloadRu',
+  registrationRu = 'registrationRu',
+  communityRu = 'communityRu',
+  contactsRu = 'contactsRu',
+  // en
+  langEn = 'langEn',
+  aboutEn = 'aboutEn',
+  betaEn = 'betaEn',
+  newsEn = 'newsEn',
+  socialEn = 'socialEn',
+  androidEn = 'androidEn',
+  iosEn = 'iosEn',
+  downloadEn = 'downloadEn',
+  registrationEn = 'registrationEn',
+  communityEn = 'communityEn',
+  contactsEn = 'contactsEn',
+}

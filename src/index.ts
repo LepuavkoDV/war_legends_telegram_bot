@@ -1,53 +1,39 @@
 import {
-  Context, Markup, Telegraf, Telegram,
+  Context, Markup, Telegraf, Telegram, Input
 } from 'telegraf';
 import { Update } from 'typegram';
+import {
+  onStart,
+  onHelp,
+  onLangEn,
+} from './lib/replies';
+import {ERepliesList} from './lib/ERepliesList';
 
 const { BOT_TOKEN } = process.env;
-const telegram: Telegram = new Telegram(BOT_TOKEN);
+// const telegram: Telegram = new Telegram(BOT_TOKEN);
 const bot: Telegraf<Context<Update>> = new Telegraf(BOT_TOKEN);
-const chatId: string = process.env.CHAT_ID as string;
+// const chatId: string = process.env.CHAT_ID as string;
 
-bot.start((ctx) => {
-  ctx.reply(`Hello ${ctx.from.first_name}!`);
-});
+bot.start((ctx) => onStart(ctx));
 
-bot.help((ctx) => {
-  ctx.reply('Send /start to receive a greeting');
-  ctx.reply('Send /keyboard to receive a message with a keyboard');
-  ctx.reply('Send /quit to stop the bot');
-});
+bot.help((ctx) => onHelp(ctx));
 
 bot.command('quit', (ctx) => {
   // Explicit usage
   ctx.telegram.leaveChat(ctx.message.chat.id);
-
   // Context shortcut
   ctx.leaveChat();
 });
 
-bot.command('keyboard', (ctx) => {
-  ctx.reply(
-    'Keyboard',
-    Markup.inlineKeyboard([
-      Markup.button.callback('First option', 'first'),
-      Markup.button.callback('Second option', 'second'),
-    ]),
-  );
-});
-
-bot.on('text', (ctx) => {
-  ctx.reply(
-    `You choose the ${
-      ctx.message.text === 'first' ? 'First' : 'Second'
-    } Option!`,
-  );
-
-  if (chatId) {
-    telegram.sendMessage(
-      chatId,
-      'This message was sent without your interaction!',
-    );
+bot.on('callback_query', (ctx) => {
+  const action = ctx.update.callback_query;
+  switch (action.data) {
+    case ERepliesList.langEn:
+      onLangEn(ctx);
+      break;
+    default:
+      onStart(ctx);
+      break;
   }
 });
 
