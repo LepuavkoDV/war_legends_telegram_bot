@@ -1,7 +1,6 @@
 import {
   Telegraf,
   session,
-  Context,
 } from 'telegraf';
 import {
   CallbackQuery,
