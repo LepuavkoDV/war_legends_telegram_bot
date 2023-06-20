@@ -4,18 +4,17 @@ import {
 } from 'telegraf';
 import { Update } from 'typegram';
 import { IActionContext } from '../core/IActionContext';
+import { socialNetworksUrls } from '../../config';
+import { TSupportedLocales } from '../core/TSupportedLocales';
 
 export const socialNetworks = async (ctx: IActionContext<Update>) => {
   // @ts-ignore
   const { i18n } = ctx;
-  const buttons = Markup.inlineKeyboard([
-    [Markup.button.url('Facebook', 'https://facebook.com/warlegendsrts')],
-    [Markup.button.url('YouTube', 'https://www.youtube.com/@warlegendsrts')],
-    [Markup.button.url('Twitter', 'https://twitter.com/WarLegendsRTS')],
-    [Markup.button.url('Discord', 'https://discord.gg/SbuJ2YAsPw')],
-    [Markup.button.url('Telegram', 'https://t.me/WarLegendsRTS')],
-    [Markup.button.callback(`⬅️ ${i18n.t('mainMenu')}`, i18n.languageCode)],
-  ]);
+  const languageCode = i18n.languageCode as TSupportedLocales;
+  const urls = socialNetworksUrls[languageCode];
+  const buttonsConfig: any = Object.keys(urls).map((key) => [Markup.button.url(`${key.charAt(0).toUpperCase()}${key.slice(1)}`, urls[key])]);
+  buttonsConfig.push([Markup.button.callback(`⬅️ ${i18n.t('mainMenu')}`, languageCode)])
+  const buttons = Markup.inlineKeyboard(buttonsConfig);
   await ctx.sendPhoto(
     Input.fromLocalFile(`${__dirname}/../../assets/4.jpg`),
     {

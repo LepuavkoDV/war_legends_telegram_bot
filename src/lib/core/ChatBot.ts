@@ -12,6 +12,7 @@ import { EBotActionsList } from './EBotActionsList';
 import * as path from 'path';
 import { IActionContext } from './IActionContext';
 import { ESupportedLocales } from './ESupportedLocales';
+import { TSupportedLocales } from './TSupportedLocales';
 
 export interface IChatBot {
   instance: Telegraf<IActionContext<Update>>;
@@ -67,7 +68,7 @@ export class ChatBot implements IChatBot {
       const { i18n } = ctx;
       const action: CallbackQuery.DataQuery = ctx.update.callback_query as CallbackQuery.DataQuery;
 
-      const selectLangAction = async ($ctx: IActionContext<Update>, locale: keyof typeof ESupportedLocales) => {
+      const selectLangAction = async ($ctx: IActionContext<Update>, locale: TSupportedLocales) => {
         $ctx.session = { locale };
         i18n.locale($ctx.session?.locale || ESupportedLocales.en);
         await actions.selectLanguage($ctx);
@@ -83,6 +84,14 @@ export class ChatBot implements IChatBot {
       case EBotActionsList.actionSocialNetworks:
         i18n.locale(ctx.session?.locale);
         await actions.socialNetworks(ctx);
+        break;
+      case EBotActionsList.actionAndroid:
+        i18n.locale(ctx.session?.locale);
+        await actions.android(ctx);
+        break;
+      case EBotActionsList.actionIOS:
+        i18n.locale(ctx.session?.locale);
+        await actions.ios(ctx);
         break;
       default:
         await actions.start(ctx);
