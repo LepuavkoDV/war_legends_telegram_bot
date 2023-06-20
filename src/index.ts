@@ -29,20 +29,18 @@ bot.use(session());
 bot.use(i18n.middleware());
 
 bot.start((ctx) => onStart(ctx));
-
 bot.help((ctx) => onHelp(ctx));
-
-bot.command('quit', (ctx) => {
-  // Explicit usage
-  ctx.telegram.leaveChat(ctx.message.chat.id);
-  // Context shortcut
-  ctx.leaveChat();
-});
-
+// bot.command('quit', (ctx) => {
+//   // Explicit usage
+//   ctx.telegram.leaveChat(ctx.message.chat.id);
+//   // Context shortcut
+//   ctx.leaveChat();
+// });
 bot.on('callback_query', (ctx) => {
   // @ts-ignore
   const i18n = ctx.i18n;
   const action: CallbackQuery.DataQuery = ctx.update.callback_query as CallbackQuery.DataQuery;
+
   switch (action.data) {
     case ERepliesList.langEn:
       ctx.session = { locale: 'en' };
