@@ -12,7 +12,7 @@ import {
   onHelp,
   onLangSelect,
   onSocial,
-} from './lib/replies';
+} from './lib/actions';
 import { EBotActionsList } from './lib/types/EBotActionsList';
 import * as path from 'path';
 import { IActionContext } from './lib/types/IActionContext';
