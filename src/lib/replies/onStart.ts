@@ -11,9 +11,10 @@ export const onStart = (ctx: Context<Update>) => {
     [Markup.button.callback('🇺🇸', ERepliesList.langEn), Markup.button.callback('🇷🇺', ERepliesList.langRu)],
   ]);
   ctx.sendPhoto(
-    Input.fromURL('https://i.imgur.com/LpBQcfg.jpg'),
+    Input.fromLocalFile(`${__dirname}/../../assets/1.jpg`),
     {
-      caption: `Here you can follow the latest news and development progress of War Legends RTS\\. Select your language to get started\\:`,
+      // @ts-ignore
+      caption: ctx?.i18n?.t('start'),
       parse_mode: 'MarkdownV2',
       ...buttons
     }
