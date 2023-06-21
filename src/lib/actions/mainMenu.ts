@@ -6,7 +6,7 @@ import {
 import { Update } from 'typegram';
 import { EBotActionsList } from '../core/EBotActionsList';
 
-export const selectLanguage = async (ctx: Context<Update>) => {
+export const mainMenu = async (ctx: Context<Update>) => {
   // @ts-ignore
   const i18n = ctx.i18n;
   const buttons = Markup.inlineKeyboard([

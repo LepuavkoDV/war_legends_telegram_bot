@@ -13,6 +13,7 @@ import * as path from 'path';
 import { IActionContext } from './IActionContext';
 import { ESupportedLocales } from './ESupportedLocales';
 import { TSupportedLocales } from './TSupportedLocales';
+import {mainMenu} from '../actions/mainMenu';
 
 export interface IChatBot {
   instance: Telegraf<IActionContext<Update>>;
@@ -71,7 +72,7 @@ export class ChatBot implements IChatBot {
       const selectLangAction = async ($ctx: IActionContext<Update>, locale: TSupportedLocales) => {
         $ctx.session = { locale };
         i18n.locale($ctx.session?.locale || ESupportedLocales.en);
-        await actions.selectLanguage($ctx);
+        await actions.mainMenu($ctx);
       }
 
       switch (action.data) {
