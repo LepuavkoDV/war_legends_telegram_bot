@@ -13,7 +13,7 @@ import * as path from 'path';
 import { IActionContext } from './IActionContext';
 import { ESupportedLocales } from './ESupportedLocales';
 import { TSupportedLocales } from './TSupportedLocales';
-import {mainMenu} from '../actions/mainMenu';
+import { mainMenu } from '../actions/mainMenu';
 
 export interface IChatBot {
   instance: Telegraf<IActionContext<Update>>;
@@ -93,6 +93,10 @@ export class ChatBot implements IChatBot {
       case EBotActionsList.actionIOS:
         i18n.locale(ctx.session?.locale);
         await actions.ios(ctx);
+        break;
+      case EBotActionsList.actionContacts:
+        i18n.locale(ctx.session?.locale);
+        await actions.contacts(ctx);
         break;
       default:
         await actions.start(ctx);

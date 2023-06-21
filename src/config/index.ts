@@ -18,3 +18,5 @@ export const socialNetworksUrls: Record<TSupportedLocales, Record<string, string
     telegram: 'https://www.google.com.ua/',
   },
 }
+export const supportEmail = 'info@geargames.com';
+export const contactEmail = 'asineokaya@gear-games.com';

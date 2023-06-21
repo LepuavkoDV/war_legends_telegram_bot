@@ -15,6 +15,9 @@
   "registration": "Registration",
   "downloadApk": "Download APK",
   "contacts": "Contacts",
+  "contactsActionCaption": "Send any questions, suggestions and wishes\\. We look forward to every message\\!",
+  "contactsActionSupportCta": "Support",
+  "contactsActionPressCta": "Press",
   "community": "Community",
   "mainMenu": "Main menu"
 }
