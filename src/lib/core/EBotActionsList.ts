@@ -11,4 +11,6 @@ export enum EBotActionsList {
   actionRegistration = 'actionRegistration',
   actionCommunity = 'actionCommunity',
   actionContacts = 'actionContacts',
+  actionContactsSupport = 'actionContactsSupport',
+  actionContactsPress = 'actionContactsPress',
 }

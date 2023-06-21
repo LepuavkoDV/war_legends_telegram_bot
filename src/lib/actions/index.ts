@@ -4,7 +4,8 @@ import { mainMenu } from './mainMenu';
 import { socialNetworks } from './socialNetworks';
 import { contacts } from './contacts';
 import { android } from './android';
-import { ios } from './ios'
+import { ios } from './ios';
+import { support } from './support';
 
 export const actions = {
   start,
