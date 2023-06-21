@@ -105,6 +105,7 @@ export class ChatBot implements IChatBot {
         i18n.locale(ctx.session?.locale);
         await actions.press(ctx);
         break;
+      case EBotActionsList.actionStart:
       default:
         await actions.start(ctx);
         break;

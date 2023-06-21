@@ -30,6 +30,9 @@ export const mainMenu = async (ctx: Context<Update>) => {
       Markup.button.callback(`📩 ${i18n.t('contacts')}`, EBotActionsList.actionContacts),
       Markup.button.callback(`💬 ${i18n.t('community')}`, EBotActionsList.actionCommunity),
     ],
+    [
+      Markup.button.callback(`⬅️ ${i18n.t('mainMenu')}`, EBotActionsList.actionStart),
+    ],
   ]);
   await ctx.sendPhoto(
     Input.fromLocalFile(`${__dirname}/../../assets/2.jpg`),

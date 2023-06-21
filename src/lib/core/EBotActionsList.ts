@@ -1,4 +1,5 @@
 export enum EBotActionsList {
+  actionStart = 'actionStart',
   actionSelectLangRu = 'ru',
   actionSelectLangEn = 'en',
   actionAbout = 'actionAbout',
