@@ -4,17 +4,14 @@ import {
 } from 'telegraf';
 import { Update } from 'typegram';
 import { IActionContext } from '../core/IActionContext';
-import {
-  supportEmail,
-  contactEmail,
-} from '../../config';
+import { EBotActionsList } from '../core/EBotActionsList';
 
 export const contacts = async (ctx: IActionContext<Update>) => {
   // @ts-ignore
   const { i18n } = ctx;
   const buttons = Markup.inlineKeyboard([
-    [Markup.button.url(`⚙️ ${i18n.t('contactsActionSupportCta')}`, `mailto:${supportEmail}`)],
-    [Markup.button.url(`✉️ ${i18n.t('contactsActionPressCta')}`, `mailto:${contactEmail}`)],
+    [Markup.button.callback(`⚙️ ${i18n.t('contactsActionSupportCta')}`, EBotActionsList.actionContactsSupport)],
+    [Markup.button.callback(`✉️ ${i18n.t('contactsActionPressCta')}`, EBotActionsList.actionContactsPress)],
     [Markup.button.callback(`⬅️ ${i18n.t('mainMenu')}`, i18n.languageCode)],
   ])
   await ctx.sendPhoto(

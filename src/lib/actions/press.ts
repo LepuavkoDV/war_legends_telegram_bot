@@ -1,22 +1,21 @@
-import {
-  Input,
-  Markup,
-} from 'telegraf';
+import { Markup } from 'telegraf';
 import { Update } from 'typegram';
 import { IActionContext } from '../core/IActionContext';
+import { contactEmail } from '../../config';
+import { EBotActionsList } from '../core/EBotActionsList';
 
 export const press = async (ctx: IActionContext<Update>) => {
   // @ts-ignore
   const { i18n } = ctx;
   const buttons = Markup.inlineKeyboard([
-    [Markup.button.callback(`⬅️ ${i18n.t('mainMenu')}`, i18n.languageCode)],
+    [Markup.button.callback(`⬅️ ${i18n.t('mainMenu')}`, EBotActionsList.actionContacts)],
   ])
-  await ctx.sendPhoto(
-    Input.fromLocalFile(`${__dirname}/../../assets/4.jpg`),
+  const text = `${i18n.t('contactsActionSupportCaption1')} ${contactEmail}. ${i18n.t('contactsActionSupportCaption2')}`;
+  await ctx.reply(
+    text,
     {
-      caption: i18n.t('contactsActionCaption'),
       // eslint-disable-next-line camelcase
-      parse_mode: 'MarkdownV2',
+      parse_mode: 'HTML',
       ...buttons,
     },
   );

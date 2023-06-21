@@ -17,7 +17,9 @@
   "contacts": "Contacts",
   "contactsActionCaption": "Please select the required item\\:",
   "contactsActionSupportCta": "Support",
+  "contactsActionSupportCaption1": "Send any questions, suggestions and wishes to",
+  "contactsActionSupportCaption2": "We look forward to every message\\!",
   "contactsActionPressCta": "Press",
   "community": "Community",
-  "mainMenu": "Main menu"
+  "mainMenu": "Back"
 }

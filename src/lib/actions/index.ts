@@ -6,6 +6,7 @@ import { contacts } from './contacts';
 import { android } from './android';
 import { ios } from './ios';
 import { support } from './support';
+import { press } from './press';
 
 export const actions = {
   start,
@@ -15,4 +16,6 @@ export const actions = {
   contacts,
   android,
   ios,
+  support,
+  press,
 }
