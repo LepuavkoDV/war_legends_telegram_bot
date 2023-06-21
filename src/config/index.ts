@@ -14,8 +14,6 @@ export const socialNetworksUrls: Record<TSupportedLocales, Record<string, string
     facebook: 'https://www.google.com.ua/',
     youtube: 'https://www.google.com.ua/',
     twitter: 'https://www.google.com.ua/',
-    discord: 'https://www.google.com.ua/',
-    telegram: 'https://www.google.com.ua/',
   },
 }
 export const supportEmail = 'info@geargames.com';

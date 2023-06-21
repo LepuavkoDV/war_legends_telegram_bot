@@ -5,12 +5,21 @@
   "beta": "Бета Тест",
   "news": "Новости",
   "android": "Android",
+  "androidActionCaption": "The game is currently in a testing phase\\. Everyone can test it now\\!",
+  "androidActionCta": "Get it on Google Play",
   "social": "Социалки",
   "onSocialTitle": "Оставайтесь на канале и подписывайтесь на наши социалки",
   "ios": "iOS",
+  "iosActionCaption": "The game is currently in a testing phase\\. Everyone can test it now\\!",
+  "iosActionCta": "Available on the App Store",
   "registration": "Регистрация",
   "downloadApk": "Скачать APK",
   "contacts": "Контакты",
+  "contactsActionCaption": "Please select the required item\\:",
+  "contactsActionSupportCta": "Поддержка",
+  "contactsActionSupportCaption1": "Send any questions, suggestions and wishes to",
+  "contactsActionSupportCaption2": "We look forward to every message\\!",
+  "contactsActionPressCta": "Пресса",
   "community": "Комьюнити",
-  "mainMenu": "Главное меню"
+  "mainMenu": "Назад"
 }

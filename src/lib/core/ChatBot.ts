@@ -12,7 +12,6 @@ import { EBotActionsList } from './EBotActionsList';
 import * as path from 'path';
 import { IActionContext } from './IActionContext';
 import { ESupportedLocales } from './ESupportedLocales';
-import { TSupportedLocales } from './TSupportedLocales';
 
 export interface IChatBot {
   instance: Telegraf<IActionContext<Update>>;
@@ -41,7 +40,7 @@ export class ChatBot implements IChatBot {
 
     this.registerWelcomeMessage();
     this.registerHelp();
-    this.registerCommands();
+    // this.registerCommands();
     this.registerActions();
   }
 
@@ -64,50 +63,46 @@ export class ChatBot implements IChatBot {
 
   registerActions(): void {
     this.instance.on('callback_query', async (ctx) => {
-      // @ts-ignore
-      const { i18n } = ctx;
       const action: CallbackQuery.DataQuery = ctx.update.callback_query as CallbackQuery.DataQuery;
 
-      const selectLangAction = async ($ctx: IActionContext<Update>, locale: TSupportedLocales) => {
-        $ctx.session = { locale };
-        i18n.locale($ctx.session?.locale || ESupportedLocales.en);
-        await actions.mainMenu($ctx);
+      switch (action.data) {
+      case EBotActionsList.actionSelectLangRu:
+        ctx.session = { locale: ESupportedLocales.ru };
+        ctx.i18n.locale(ESupportedLocales.ru);
+        break;
+      case EBotActionsList.actionSelectLangEn:
+        ctx.session = { locale: ESupportedLocales.en };
+        ctx.i18n.locale(ESupportedLocales.en);
+        break;
+      default:
+        ctx.i18n.locale(ctx.session?.locale || ESupportedLocales.en);
+        break;
       }
 
       switch (action.data) {
-      case EBotActionsList.actionSelectLangEn:
-        await selectLangAction(ctx, ESupportedLocales.en);
-        break;
-      case EBotActionsList.actionSelectLangRu:
-        await selectLangAction(ctx, ESupportedLocales.ru);
-        break;
       case EBotActionsList.actionSocialNetworks:
-        i18n.locale(ctx.session?.locale);
         await actions.socialNetworks(ctx);
         break;
       case EBotActionsList.actionAndroid:
-        i18n.locale(ctx.session?.locale);
         await actions.android(ctx);
         break;
       case EBotActionsList.actionIOS:
-        i18n.locale(ctx.session?.locale);
         await actions.ios(ctx);
         break;
       case EBotActionsList.actionContacts:
-        i18n.locale(ctx.session?.locale);
         await actions.contacts(ctx);
         break;
       case EBotActionsList.actionContactsSupport:
-        i18n.locale(ctx.session?.locale);
         await actions.support(ctx);
         break;
       case EBotActionsList.actionContactsPress:
-        i18n.locale(ctx.session?.locale);
         await actions.press(ctx);
         break;
       case EBotActionsList.actionStart:
+      case EBotActionsList.actionSelectLangRu:
+      case EBotActionsList.actionSelectLangEn:
       default:
-        await actions.start(ctx);
+        await actions.mainMenu(ctx);
         break;
       }
     });
