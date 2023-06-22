@@ -10,7 +10,7 @@ import { TSupportedLocales } from '../core/TSupportedLocales';
 export const socialNetworks = async (ctx: IActionContext<Update>) => {
   // @ts-ignore
   const { i18n } = ctx;
-  const languageCode = i18n.languageCode as TSupportedLocales;
+  const languageCode = i18n.locale() as TSupportedLocales;
   const urls = socialNetworksUrls[languageCode];
   const buttonsConfig: any = Object.keys(urls).map((key) => [Markup.button.url(`${key.charAt(0).toUpperCase()}${key.slice(1)}`, urls[key])]);
   buttonsConfig.push([Markup.button.callback(`⬅️ ${i18n.t('mainMenu')}`, languageCode)])

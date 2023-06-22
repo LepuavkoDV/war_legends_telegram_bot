@@ -99,6 +99,8 @@ export class ChatBot implements IChatBot {
         await actions.press(ctx);
         break;
       case EBotActionsList.actionStart:
+        await actions.start(ctx);
+        break;
       case EBotActionsList.actionSelectLangRu:
       case EBotActionsList.actionSelectLangEn:
       default:

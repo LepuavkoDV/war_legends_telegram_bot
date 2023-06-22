@@ -11,7 +11,7 @@ export const android = async (ctx: IActionContext<Update>) => {
   const { i18n } = ctx;
   const buttons = Markup.inlineKeyboard([
     [Markup.button.url(`▶️ ${i18n.t('androidActionCta')}`, playMarketApplicationUrl)],
-    [Markup.button.callback(`⬅️ ${i18n.t('mainMenu')}`, i18n.languageCode)],
+    [Markup.button.callback(`⬅️ ${i18n.t('mainMenu')}`, i18n.locale())],
   ])
   await ctx.sendPhoto(
     Input.fromLocalFile(`${__dirname}/../../assets/4.jpg`),

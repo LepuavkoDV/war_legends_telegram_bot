@@ -12,7 +12,7 @@ export const contacts = async (ctx: IActionContext<Update>) => {
   const buttons = Markup.inlineKeyboard([
     [Markup.button.callback(`⚙️ ${i18n.t('contactsActionSupportCta')}`, EBotActionsList.actionContactsSupport)],
     [Markup.button.callback(`✉️ ${i18n.t('contactsActionPressCta')}`, EBotActionsList.actionContactsPress)],
-    [Markup.button.callback(`⬅️ ${i18n.t('mainMenu')}`, i18n.languageCode)],
+    [Markup.button.callback(`⬅️ ${i18n.t('mainMenu')}`, i18n.locale())],
   ])
   await ctx.sendPhoto(
     Input.fromLocalFile(`${__dirname}/../../assets/4.jpg`),
