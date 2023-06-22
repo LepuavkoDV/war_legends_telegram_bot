@@ -63,49 +63,53 @@ export class ChatBot implements IChatBot {
 
   registerActions(): void {
     this.instance.on('callback_query', async (ctx) => {
-      const action: CallbackQuery.DataQuery = ctx.update.callback_query as CallbackQuery.DataQuery;
+      try {
+        const action: CallbackQuery.DataQuery = ctx.update.callback_query as CallbackQuery.DataQuery;
 
-      switch (action.data) {
-      case EBotActionsList.actionSelectLangRu:
-        ctx.session = { locale: ESupportedLocales.ru };
-        ctx.i18n.locale(ESupportedLocales.ru);
-        break;
-      case EBotActionsList.actionSelectLangEn:
-        ctx.session = { locale: ESupportedLocales.en };
-        ctx.i18n.locale(ESupportedLocales.en);
-        break;
-      default:
-        ctx.i18n.locale(ctx.session?.locale || ESupportedLocales.en);
-        break;
-      }
+        switch (action.data) {
+        case EBotActionsList.actionSelectLangRu:
+          ctx.session = { locale: ESupportedLocales.ru };
+          ctx.i18n.locale(ESupportedLocales.ru);
+          break;
+        case EBotActionsList.actionSelectLangEn:
+          ctx.session = { locale: ESupportedLocales.en };
+          ctx.i18n.locale(ESupportedLocales.en);
+          break;
+        default:
+          ctx.i18n.locale(ctx.session?.locale || ESupportedLocales.en);
+          break;
+        }
 
-      switch (action.data) {
-      case EBotActionsList.actionSocialNetworks:
-        await actions.socialNetworks(ctx);
-        break;
-      case EBotActionsList.actionAndroid:
-        await actions.android(ctx);
-        break;
-      case EBotActionsList.actionIOS:
-        await actions.ios(ctx);
-        break;
-      case EBotActionsList.actionContacts:
-        await actions.contacts(ctx);
-        break;
-      case EBotActionsList.actionContactsSupport:
-        await actions.support(ctx);
-        break;
-      case EBotActionsList.actionContactsPress:
-        await actions.press(ctx);
-        break;
-      case EBotActionsList.actionStart:
-        await actions.start(ctx);
-        break;
-      case EBotActionsList.actionSelectLangRu:
-      case EBotActionsList.actionSelectLangEn:
-      default:
-        await actions.mainMenu(ctx);
-        break;
+        switch (action.data) {
+        case EBotActionsList.actionSocialNetworks:
+          await actions.socialNetworks(ctx);
+          break;
+        case EBotActionsList.actionAndroid:
+          await actions.android(ctx);
+          break;
+        case EBotActionsList.actionIOS:
+          await actions.ios(ctx);
+          break;
+        case EBotActionsList.actionContacts:
+          await actions.contacts(ctx);
+          break;
+        case EBotActionsList.actionContactsSupport:
+          await actions.support(ctx);
+          break;
+        case EBotActionsList.actionContactsPress:
+          await actions.press(ctx);
+          break;
+        case EBotActionsList.actionStart:
+          await actions.start(ctx);
+          break;
+        case EBotActionsList.actionSelectLangRu:
+        case EBotActionsList.actionSelectLangEn:
+        default:
+          await actions.mainMenu(ctx);
+          break;
+        }
+      } catch (error) {
+        console.error(error);
       }
     });
   }
