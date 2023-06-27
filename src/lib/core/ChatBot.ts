@@ -53,6 +53,11 @@ export class ChatBot implements IChatBot {
   }
 
   registerCommands(): void {
+    this.instance.telegram.setMyCommands([
+      { command: 'start', description: 'Start conversation with bot.' },
+      { command: 'help', description: 'Show list of available commands.' },
+    ]);
+
     this.instance.command('quit', (ctx) => {
       // Explicit usage
       ctx.telegram.leaveChat(ctx.message.chat.id);
